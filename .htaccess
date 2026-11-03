@@ -1,0 +1,37 @@
+# No folder listings (e.g. /assets/img/ shows "Forbidden" instead of a file list)
+Options -Indexes
+
+# Only index.php runs PHP; README, SQL dumps, backups and hidden files are never served
+<FilesMatch "(^\.|\.(txt|md|sql|log|ini|bak|old|swp|dist|json|lock)$|~$)">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # hidden folders such as .git or .qodo
+    RewriteRule (^|/)\. - [F]
+    # any PHP file other than index.php (pages, partials, actions are loaded by index.php only)
+    RewriteCond %{REQUEST_URI} \.php$ [NC]
+    RewriteCond %{REQUEST_URI} !(^|/)index\.php$ [NC]
+    RewriteRule ^ - [F]
+
+    # Once SSL is active on your InfinityFree domain, remove the "#" from the next two lines
+    # to send every visitor to the secure https:// address.
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Same protective headers for images, CSS and JS (index.php sends its own)
+<FilesMatch "\.(css|js|png|jpe?g|gif|webp|svg|ico)$">
+    <IfModule mod_headers.c>
+        Header set X-Content-Type-Options "nosniff"
+        Header set X-Frame-Options "DENY"
+        Header set Referrer-Policy "same-origin"
+    </IfModule>
+</FilesMatch>

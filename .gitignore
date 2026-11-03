@@ -1,0 +1,7 @@
+# editor / tool folders
+.qodo/
+# never commit real hosting credentials (keep only the blank template)
+config/*.REAL.php
+config/config.production.php
+# build outputs
+*.zip

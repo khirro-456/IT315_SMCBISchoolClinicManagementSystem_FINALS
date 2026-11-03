@@ -1,0 +1,224 @@
+/* =====================================================================
+   School Clinic System: themes chosen by the admin (Appearance page)
+   <html data-ui-theme="..."> picks the theme; style.css is "classic".
+   Every theme works in light and dark mode (data-bs-theme).
+
+   How to read a theme:
+     [data-ui-theme="x"]                              both modes
+     [data-ui-theme="x"]:not([data-bs-theme="dark"])  light mode only
+     [data-ui-theme="x"][data-bs-theme="dark"]        dark mode only
+   Add a theme: copy a colour theme below, then list it in includes/themes.php.
+   ===================================================================== */
+
+/* =====================================================================
+   GLASSY: frosted see-through panels over a soft colourful background
+   ===================================================================== */
+[data-ui-theme="glassy"] {
+  --brand: #4f46e5; --brand-rgb: 79, 70, 229; --brand-hover: #4338ca; --brand-active: #3730a3;
+  --accent: #db2777; --accent-rgb: 219, 39, 119;
+  --brand-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
+  --radius: 20px; --radius-lg: 26px;
+  --glass-blur: blur(18px) saturate(170%);
+  --sidebar-surface: var(--sidebar-bg);
+  --sidebar-active: linear-gradient(90deg, rgba(var(--brand-rgb), .2), rgba(var(--accent-rgb), .12));
+  --sidebar-indicator: linear-gradient(#818cf8, #f472b6);
+}
+[data-ui-theme="glassy"]:not([data-bs-theme="dark"]) {
+  --brand-text: #4338ca;
+  --app-bg: #e9ecfa;
+  --surface: rgba(255, 255, 255, .45); --surface-2: rgba(255, 255, 255, .35); --surface-3: rgba(255, 255, 255, .7);
+  --border: rgba(15, 23, 42, .09);
+  --muted: #475569;
+  --shadow-sm: 0 1px 2px rgba(31, 38, 135, .06);
+  --shadow: 0 8px 32px rgba(31, 38, 135, .1);
+  --shadow-lg: 0 24px 60px rgba(31, 38, 135, .18);
+  --glass-edge: rgba(255, 255, 255, .7);
+  --glass-strong: rgba(255, 255, 255, .92);
+  --glass-scene:
+    radial-gradient(45% 55% at 8% 10%, rgba(99, 102, 241, .6), transparent 70%),
+    radial-gradient(40% 50% at 92% 12%, rgba(236, 72, 153, .45), transparent 70%),
+    radial-gradient(50% 55% at 82% 92%, rgba(20, 184, 166, .45), transparent 70%),
+    radial-gradient(45% 50% at 12% 88%, rgba(59, 130, 246, .42), transparent 70%);
+  --sidebar-bg: rgba(255, 255, 255, .35);
+  --sidebar-text: #334155; --sidebar-strong: #0f172a; --sidebar-muted: #64748b; --sidebar-faint: #94a3b8;
+  --sidebar-hover: rgba(255, 255, 255, .55); --sidebar-border: rgba(255, 255, 255, .7);
+  --sidebar-active-icon: var(--brand);
+  --sidebar-close-filter: none;
+}
+[data-ui-theme="glassy"][data-bs-theme="dark"] {
+  --brand: #6366f1; --brand-rgb: 99, 102, 241; --brand-text: #a5b4fc;
+  --app-bg: #070b18;
+  --surface: rgba(17, 24, 39, .55); --surface-2: rgba(15, 23, 42, .45); --surface-3: rgba(51, 65, 85, .5);
+  --border: rgba(255, 255, 255, .08);
+  --glass-edge: rgba(255, 255, 255, .1);
+  --glass-strong: rgba(17, 24, 39, .94);
+  --glass-scene:
+    radial-gradient(40% 50% at 8% 10%, rgba(79, 70, 229, .4), transparent 70%),
+    radial-gradient(35% 45% at 92% 12%, rgba(219, 39, 119, .25), transparent 70%),
+    radial-gradient(45% 50% at 82% 92%, rgba(13, 148, 136, .28), transparent 70%),
+    radial-gradient(40% 45% at 12% 88%, rgba(37, 99, 235, .25), transparent 70%);
+  --sidebar-bg: rgba(15, 23, 42, .45);
+  --sidebar-active-icon: #a5b4fc;
+}
+/* the colourful scene behind everything */
+[data-ui-theme="glassy"] body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: var(--glass-scene), var(--app-bg); }
+[data-ui-theme="glassy"] .card,
+[data-ui-theme="glassy"] aside.sidebar,
+[data-ui-theme="glassy"] .login-form-side { backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); }
+[data-ui-theme="glassy"] .card { --bs-card-border-color: var(--glass-edge); }
+[data-ui-theme="glassy"] .topbar { background: color-mix(in srgb, var(--app-bg) 45%, transparent); border-bottom-color: var(--glass-edge); }
+/* menus, popups and sticky headers sit over text, so they are nearly solid */
+[data-ui-theme="glassy"] .dropdown-menu { --bs-dropdown-bg: var(--glass-strong); }
+[data-ui-theme="glassy"] .modal { --bs-modal-bg: var(--glass-strong); }
+[data-ui-theme="glassy"] .modal-header,
+[data-ui-theme="glassy"] .modal-footer,
+[data-ui-theme="glassy"] .scroll-box thead th { background: var(--glass-strong); }
+[data-ui-theme="glassy"] .modal-content { border: 1px solid var(--glass-edge); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); }
+[data-ui-theme="glassy"] .modal-backdrop { backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+
+/* =====================================================================
+   MINIMALIST: black and white, flat, no shadows
+   ===================================================================== */
+[data-ui-theme="minimal"] {
+  --radius-sm: 6px; --radius: 10px; --radius-lg: 12px;
+  --font-display: var(--font);
+  --accent: #71717a; --accent-rgb: 113, 113, 122;
+  --shadow-sm: none; --shadow: none;
+  --sidebar-surface: var(--sidebar-bg);
+  --sidebar-close-filter: none;
+}
+[data-ui-theme="minimal"]:not([data-bs-theme="dark"]) {
+  --brand: #18181b; --brand-rgb: 24, 24, 27; --brand-hover: #27272a; --brand-active: #3f3f46; --brand-text: #18181b;
+  --brand-gradient: linear-gradient(135deg, #18181b, #3f3f46);
+  --app-bg: #fafafa; --surface: #fff; --surface-2: #fafafa; --surface-3: #f4f4f5;
+  --border: #e4e4e7; --text: #18181b; --muted: #71717a;
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, .08);
+  --sidebar-bg: #fff;
+  --sidebar-text: #52525b; --sidebar-strong: #18181b; --sidebar-muted: #71717a; --sidebar-faint: #a1a1aa;
+  --sidebar-hover: #f4f4f5; --sidebar-border: #e4e4e7; --sidebar-active: #f4f4f5;
+  --sidebar-active-icon: #18181b; --sidebar-indicator: #18181b;
+}
+[data-ui-theme="minimal"][data-bs-theme="dark"] {
+  --brand: #fafafa; --brand-rgb: 250, 250, 250; --brand-hover: #e4e4e7; --brand-active: #d4d4d8; --brand-text: #fafafa;
+  --brand-contrast: #18181b;
+  --brand-gradient: linear-gradient(135deg, #27272a, #3f3f46);
+  --app-bg: #09090b; --surface: #111113; --surface-2: #0c0c0e; --surface-3: #1c1c1f;
+  --border: #27272a; --text: #fafafa; --muted: #a1a1aa;
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, .5);
+  --sidebar-bg: #09090b;
+  --sidebar-text: #a1a1aa; --sidebar-strong: #fafafa; --sidebar-muted: #71717a; --sidebar-faint: #52525b;
+  --sidebar-hover: #18181b; --sidebar-border: #27272a; --sidebar-active: #18181b;
+  --sidebar-active-icon: #fafafa; --sidebar-indicator: #fafafa;
+}
+[data-ui-theme="minimal"] .btn { --bs-btn-border-radius: 6px; }
+[data-ui-theme="minimal"] .form-control,
+[data-ui-theme="minimal"] .form-select { border-radius: 6px; }
+[data-ui-theme="minimal"] .btn-primary,
+[data-ui-theme="minimal"] .btn-success,
+[data-ui-theme="minimal"] .hero-card,
+[data-ui-theme="minimal"] .brand-mark,
+[data-ui-theme="minimal"] .login-mark { box-shadow: none; }
+[data-ui-theme="minimal"] .btn-primary:hover,
+[data-ui-theme="minimal"] .card-link:hover .stat-card,
+[data-ui-theme="minimal"] .report-card:hover { transform: none; box-shadow: none; }
+[data-ui-theme="minimal"] .hero-card::before,
+[data-ui-theme="minimal"] .hero-card::after,
+[data-ui-theme="minimal"] .stat-card::after { display: none; }
+/* =====================================================================
+   SOFT UI: raised, pillow-like panels (neumorphism)
+   ===================================================================== */
+[data-ui-theme="soft"] {
+  --radius-sm: 12px; --radius: 22px; --radius-lg: 26px;
+  --shadow-sm: 3px 3px 7px var(--soft-dark), -3px -3px 7px var(--soft-light);
+  --shadow: 8px 8px 18px var(--soft-dark), -8px -8px 18px var(--soft-light);
+  --shadow-lg: 14px 14px 32px var(--soft-dark), -10px -10px 26px var(--soft-light);
+  --soft-inset: inset 3px 3px 7px var(--soft-dark), inset -3px -3px 7px var(--soft-light);
+  --sidebar-bg: var(--app-bg);
+  --sidebar-surface: var(--sidebar-bg);
+  --sidebar-active: var(--app-bg);
+  --sidebar-border: transparent;
+  --sidebar-active-icon: var(--brand);
+  --sidebar-indicator: transparent;
+}
+[data-ui-theme="soft"]:not([data-bs-theme="dark"]) {
+  --app-bg: #e6ebf2; --surface: #e6ebf2; --surface-2: #e9eef5; --surface-3: #dce3ec; --border: #d3dae5;
+  --soft-dark: #c3cad6; --soft-light: #fff;
+  --sidebar-text: #475569; --sidebar-strong: #0f172a; --sidebar-muted: #64748b; --sidebar-faint: #94a3b8;
+  --sidebar-hover: rgba(255, 255, 255, .45);
+  --sidebar-close-filter: none;
+}
+[data-ui-theme="soft"][data-bs-theme="dark"] {
+  --app-bg: #1e2430; --surface: #1e2430; --surface-2: #212836; --surface-3: #282f3d; --border: #2c3443;
+  --soft-dark: #141920; --soft-light: #283041;
+  --sidebar-hover: rgba(255, 255, 255, .04);
+}
+[data-ui-theme="soft"] .card { --bs-card-border-color: transparent; }
+[data-ui-theme="soft"] aside.sidebar { box-shadow: var(--shadow); }
+[data-ui-theme="soft"] .sidebar-link.active,
+[data-ui-theme="soft"] .filter-pill.active { box-shadow: var(--shadow-sm); }
+[data-ui-theme="soft"] .topbar { border-bottom-color: transparent; }
+[data-ui-theme="soft"] .icon-btn,
+[data-ui-theme="soft"] .user-chip,
+[data-ui-theme="soft"] .btn-outline-secondary { --bs-btn-border-color: transparent; border-color: transparent; box-shadow: var(--shadow-sm); }
+[data-ui-theme="soft"] .icon-btn:active,
+[data-ui-theme="soft"] .btn-outline-secondary:active { box-shadow: var(--soft-inset); }
+[data-ui-theme="soft"] .form-control,
+[data-ui-theme="soft"] .form-select,
+[data-ui-theme="soft"] .filter-pills,
+[data-ui-theme="soft"] .scroll-box { border-color: transparent; box-shadow: var(--soft-inset); }
+[data-ui-theme="soft"] .form-control:focus,
+[data-ui-theme="soft"] .form-select:focus { box-shadow: var(--soft-inset), 0 0 0 3px rgba(var(--brand-rgb), .3); }
+
+/* =====================================================================
+   COLOUR THEMES: same layout as Classic, different colours
+   ===================================================================== */
+
+/* ---------- Emerald: medical green ---------- */
+[data-ui-theme="emerald"] {
+  --brand: #059669; --brand-rgb: 5, 150, 105; --brand-hover: #047857; --brand-active: #065f46; --brand-text: #047857;
+  --accent: #0891b2; --accent-rgb: 8, 145, 178;
+  --brand-gradient: linear-gradient(135deg, #047857 0%, #059669 45%, #0891b2 100%);
+  --sidebar-bg: #04201a; --sidebar-active-icon: #6ee7b7; --sidebar-indicator: linear-gradient(#34d399, #22d3ee);
+}
+[data-ui-theme="emerald"]:not([data-bs-theme="dark"]) { --app-bg: #f1f7f4; }
+[data-ui-theme="emerald"][data-bs-theme="dark"] { --brand-text: #6ee7b7; }
+
+/* ---------- Ocean: sky blue and cyan ---------- */
+[data-ui-theme="ocean"] {
+  --brand: #0284c7; --brand-rgb: 2, 132, 199; --brand-hover: #0369a1; --brand-active: #075985; --brand-text: #0369a1;
+  --accent: #06b6d4; --accent-rgb: 6, 182, 212;
+  --brand-gradient: linear-gradient(135deg, #0369a1 0%, #0284c7 45%, #06b6d4 100%);
+  --sidebar-bg: #041b2b; --sidebar-active-icon: #7dd3fc; --sidebar-indicator: linear-gradient(#38bdf8, #67e8f9);
+}
+[data-ui-theme="ocean"]:not([data-bs-theme="dark"]) { --app-bg: #f0f6fa; }
+[data-ui-theme="ocean"][data-bs-theme="dark"] { --brand-text: #7dd3fc; }
+
+/* ---------- Sunset: warm orange and rose ---------- */
+[data-ui-theme="sunset"] {
+  --brand: #ea580c; --brand-rgb: 234, 88, 12; --brand-hover: #c2410c; --brand-active: #9a3412; --brand-text: #c2410c;
+  --accent: #e11d48; --accent-rgb: 225, 29, 72;
+  --brand-gradient: linear-gradient(135deg, #c2410c 0%, #ea580c 45%, #e11d48 100%);
+  --sidebar-bg: #22110a; --sidebar-active-icon: #fdba74; --sidebar-indicator: linear-gradient(#fb923c, #fb7185);
+}
+[data-ui-theme="sunset"]:not([data-bs-theme="dark"]) { --app-bg: #faf5f2; }
+[data-ui-theme="sunset"][data-bs-theme="dark"] { --brand-text: #fdba74; }
+
+/* ---------- Royal: purple and magenta ---------- */
+[data-ui-theme="royal"] {
+  --brand: #7c3aed; --brand-rgb: 124, 58, 237; --brand-hover: #6d28d9; --brand-active: #5b21b6; --brand-text: #6d28d9;
+  --accent: #c026d3; --accent-rgb: 192, 38, 211;
+  --brand-gradient: linear-gradient(135deg, #6d28d9 0%, #7c3aed 45%, #c026d3 100%);
+  --sidebar-bg: #140b2a; --sidebar-active-icon: #c4b5fd; --sidebar-indicator: linear-gradient(#a78bfa, #e879f9);
+}
+[data-ui-theme="royal"]:not([data-bs-theme="dark"]) { --app-bg: #f5f3fb; }
+[data-ui-theme="royal"][data-bs-theme="dark"] { --brand-text: #c4b5fd; }
+
+/* ---------- Blossom: pink and violet ---------- */
+[data-ui-theme="blossom"] {
+  --brand: #db2777; --brand-rgb: 219, 39, 119; --brand-hover: #be185d; --brand-active: #9d174d; --brand-text: #be185d;
+  --accent: #9333ea; --accent-rgb: 147, 51, 234;
+  --brand-gradient: linear-gradient(135deg, #be185d 0%, #db2777 45%, #9333ea 100%);
+  --sidebar-bg: #22091a; --sidebar-active-icon: #f9a8d4; --sidebar-indicator: linear-gradient(#f472b6, #c084fc);
+}
+[data-ui-theme="blossom"]:not([data-bs-theme="dark"]) { --app-bg: #fbf3f7; }
+[data-ui-theme="blossom"][data-bs-theme="dark"] { --brand-text: #f9a8d4; }
